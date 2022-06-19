@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class HW4_A_Deliveries {
@@ -25,7 +26,11 @@ public class HW4_A_Deliveries {
     }
 
     public static Map<Long, Long> calculateColorFrequencies (List<Box> boxes){
-        return boxes.stream().collect(Collectors.groupingBy(Box::getColorCode, Collectors.summingLong(Box::getColorValue)));
+        return boxes.stream()
+                .collect(Collectors.groupingBy(
+                        Box::getColorCode,
+                        TreeMap::new,
+                        Collectors.summingLong(Box::getColorValue)));
 
     }
 }
