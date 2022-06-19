@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -15,6 +17,11 @@ public class HW4_A_TestForDeliveries {
         //inputs
         long[] inputColorCodes = {1, 10, 1, 4,4,4,4};
         long[] inputColorValues = {5, -5, 10, -2, 3, 1, 0};
+        //add List of Boxes for testing refactored code
+        List<Box> boxes = new ArrayList<>();
+        for (int i = 0; i < inputColorCodes.length; i++){
+            boxes.add(new Box(inputColorCodes[i], inputColorValues[i]));
+        }
 
         //expected results
         long[] expectedColorCodes = {1, 4, 10};
@@ -22,7 +29,7 @@ public class HW4_A_TestForDeliveries {
         Map<Long, Long> expectedFrequencies = buildMapOfExpectedFrequencies(expectedColorCodes, expectedColorFrequencies);
 
         //my calculated result
-        Map<Long, Long> actualFrequencies = HW4_A_Deliveries.calculateColorFrequencies(inputColorCodes, inputColorValues);
+        Map<Long, Long> actualFrequencies = HW4_A_Deliveries.calculateColorFrequencies(boxes);
 
 
         assertEquals(expectedFrequencies, actualFrequencies);
@@ -35,6 +42,11 @@ public class HW4_A_TestForDeliveries {
         //inputs
         long[] inputColorCodes = {5, -5, 10, -5, 0};
         long[] inputColorValues = {-10000, 100_000_000_000L, 2_000_000_000_000L, -300_000_000_000L, 10_000_000_000_000L};
+        //add List of Boxes for testing refactored code
+        List<Box> boxes = new ArrayList<>();
+        for (int i = 0; i < inputColorCodes.length; i++){
+            boxes.add(new Box(inputColorCodes[i], inputColorValues[i]));
+        }
 
         //expected results
         long[] expectedColorCodes = {-5, 0, 5, 10};
@@ -42,7 +54,7 @@ public class HW4_A_TestForDeliveries {
         Map<Long, Long> expectedFrequencies = buildMapOfExpectedFrequencies(expectedColorCodes, expectedColorFrequencies);
 
         //my calculated result
-        Map<Long, Long> actualFrequencies = HW4_A_Deliveries.calculateColorFrequencies(inputColorCodes, inputColorValues);
+        Map<Long, Long> actualFrequencies = HW4_A_Deliveries.calculateColorFrequencies(boxes);
 
 
         assertEquals(expectedFrequencies, actualFrequencies);

@@ -1,8 +1,10 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class HW4_A_Deliveries {
     public static void main(String[] args) throws IOException {
@@ -10,8 +12,7 @@ public class HW4_A_Deliveries {
 
         int totalDeliveries = Integer.parseInt(reader.readLine());
 
-        long[] colorCodes = new long[totalDeliveries];
-        long[] colorValues = new long[totalDeliveries];
+        List<Box> boxes = new ArrayList<>();
 
 
         for (int i = 0; i < totalDeliveries; i++){
@@ -20,29 +21,16 @@ public class HW4_A_Deliveries {
             long colorCode = Long.parseLong(rawNumbers[0]);
             long colorValue = Long.parseLong(rawNumbers[1]);
 
-            colorCodes[i] = colorCode;
-            colorValues[i] = colorValue;
+            boxes.add(new Box(colorCode, colorValue));
 
         }
 
-        Map<Long, Long> frequencies = calculateColorFrequencies(colorCodes, colorValues);
+        Map<Long, Long> frequencies = calculateColorFrequencies(boxes);
         frequencies.forEach((key, value) -> System.out.println(key + " " + value));
     }
 
-    public static Map<Long, Long> calculateColorFrequencies (long[] colorCodes, long[] colorValues){
-        Map<Long, Long> colorFrequencies = new TreeMap<>();
-        for (int i = 0; i < colorCodes.length; i++){
-            long code = colorCodes[i];
-            long value = colorValues[i];
+    public static Map<Long, Long> calculateColorFrequencies (List<Box> boxes){
+        return boxes.stream().collect(Collectors.groupingBy(Box::getColorCode, Collectors.summingLong(Box::getColorValue)));
 
-            if (colorFrequencies.containsKey(code)){
-                long currentValue = colorFrequencies.get(code);
-                long updatedValue = currentValue + value;
-                colorFrequencies.put(code, updatedValue);
-            } else {
-                colorFrequencies.put(code, value);
-            }
-        }
-        return colorFrequencies;
     }
 }
