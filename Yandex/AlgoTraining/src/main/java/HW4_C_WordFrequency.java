@@ -9,7 +9,7 @@ public class HW4_C_WordFrequency {
 
 
     public static void main(String[] args) throws IOException {
-        String fileName = "C:/input.txt";
+        String fileName = "input.txt";
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
         List<String> linesFromFile = new ArrayList<>();
         String line;
