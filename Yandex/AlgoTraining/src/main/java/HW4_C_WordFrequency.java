@@ -25,7 +25,7 @@ public class HW4_C_WordFrequency {
 
     }
 
-    private static List<String> getWordListBasedOnFrequency(List<String> linesFromFile){
+    public static List<String> getWordListBasedOnFrequency(List<String> linesFromFile){
      return linesFromFile.stream()
                 .map(line -> line.split(" "))
                 .flatMap(Arrays::stream)
