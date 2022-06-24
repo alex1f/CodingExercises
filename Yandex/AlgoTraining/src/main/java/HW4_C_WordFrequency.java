@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
@@ -45,16 +44,4 @@ public class HW4_C_WordFrequency {
             return i;
         }
     };
-
-    private static BufferedReader createReaderForFile (String fileName){
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader(fileName));
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
-        }
-        return reader;
-    }
-
-
 }
