@@ -18,7 +18,7 @@ public class HW4_D_ElectionResults {
         results.forEach(result -> System.out.println(result.getPartyName() + " " + result.getMandates()));
     }
 
-    public static void processRawVotingResults(List<OnePartyStats> rawResults, int totalMandates){
+    public static List<OnePartyStats> processRawVotingResults(List<OnePartyStats> rawResults, int totalMandates){
         long totalVotes = rawResults.stream().mapToLong(OnePartyStats::getVotes).sum();
         double firstElectoralQuotient = (double) totalVotes / totalMandates;
 
@@ -43,10 +43,11 @@ public class HW4_D_ElectionResults {
         }
 
         rawResults.sort(Comparator.comparing(OnePartyStats::getPartyId));
+        return rawResults;
     }
 
 
-    private static List<OnePartyStats> readVotingResults (BufferedReader reader) throws IOException{
+    static List<OnePartyStats> readVotingResults(BufferedReader reader) throws IOException{
         List<OnePartyStats> votingResults = new ArrayList<>();
 
         String line;
