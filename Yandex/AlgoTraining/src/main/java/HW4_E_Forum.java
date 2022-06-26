@@ -85,7 +85,4 @@ class ForumPost{
         return topic;
     }
 
-    public int getPostId() {
-        return postId;
-    }
 }
