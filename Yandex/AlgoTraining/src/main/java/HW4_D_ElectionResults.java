@@ -9,7 +9,7 @@ public class HW4_D_ElectionResults {
     private static int partyId = 1;
 
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("C:/input.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
         List<OnePartyStats> results = readVotingResults(reader);
 
         int totalMandates = 450;
@@ -66,7 +66,7 @@ public class HW4_D_ElectionResults {
         int endPointForSubString = line.length() - numberOfSymbolsForVotesWithSpace;
 
         String partyName = line.substring(0, endPointForSubString);
-        int votes = Integer.parseInt(rawVotes);
+        long votes = Long.parseLong(rawVotes);
         int partyId = getNextPartyId();
 
         return new OnePartyStats(partyId, partyName, votes);
@@ -85,7 +85,7 @@ class OnePartyStats {
     private int mandates;
     private int voteRemainder;
 
-    public OnePartyStats(int partyId, String partyName, int votes) {
+    public OnePartyStats(int partyId, String partyName, long votes) {
         this.partyId = partyId;
         this.partyName = partyName;
         this.votes = votes;
