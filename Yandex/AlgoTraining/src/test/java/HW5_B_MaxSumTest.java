@@ -32,5 +32,75 @@ class HW5_B_MaxSumTest {
         assertEquals(expectedSum, calculatedSum);
     }
 
+    @Test
+    public void onlyOneElement(){
+        //input
+        int[] numbers = new int[]{6};
+
+        //expected
+        long expectedSum = 6;
+
+        //actual
+        long calculatedSum = new SegmentCalculator().findLongestSegment(numbers);
+
+        assertEquals(expectedSum, calculatedSum);
+    }
+
+    @Test
+    public void allZeroes(){
+        //input
+        int[] numbers = new int[]{0, 0, 0};
+
+        //expected
+        long expectedSum = 0;
+
+        //actual
+        long calculatedSum = new SegmentCalculator().findLongestSegment(numbers);
+
+        assertEquals(expectedSum, calculatedSum);
+    }
+
+    @Test
+    public void onlyOnePositiveNumber(){
+        //input
+        int[] numbers = new int[]{-6, 5, -100};
+
+        //expected
+        long expectedSum = 5;
+
+        //actual
+        long calculatedSum = new SegmentCalculator().findLongestSegment(numbers);
+
+        assertEquals(expectedSum, calculatedSum);
+    }
+
+    @Test
+    public void onlyNegativeNumbers(){
+        //input
+        int[] numbers = new int[]{-6, -1, -100};
+
+        //expected
+        long expectedSum = -1;
+
+        //actual
+        long calculatedSum = new SegmentCalculator().findLongestSegment(numbers);
+
+        assertEquals(expectedSum, calculatedSum);
+    }
+
+    @Test
+    public void onlyNegativeNumbersWithOneZero(){
+        //input
+        int[] numbers = new int[]{-6, 0, -100};
+
+        //expected
+        long expectedSum = 0;
+
+        //actual
+        long calculatedSum = new SegmentCalculator().findLongestSegment(numbers);
+
+        assertEquals(expectedSum, calculatedSum);
+    }
+
 
 }

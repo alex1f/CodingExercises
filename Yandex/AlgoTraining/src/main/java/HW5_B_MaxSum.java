@@ -39,7 +39,7 @@ class SegmentCalculator{
 
     public long findLongestSegment(int[] numbers){
         prefixes = calculatePrefixes(numbers);
-        long maxSum = prefixes[0];
+        long maxSum = prefixes[1];
         for (int left = 1; left < prefixes.length; left++){
             for (int right = left; right < prefixes.length; right++){
                 long currentSum = calculateSegmentLength(left, right);
