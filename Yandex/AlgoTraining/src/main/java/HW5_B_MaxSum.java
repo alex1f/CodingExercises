@@ -5,12 +5,6 @@ import java.util.Arrays;
 
 public class HW5_B_MaxSum {
     public static void main(String[] args) {
-        int[] numbers = readInput();
-        long maxSum = new SegmentCalculator().findLongestSegment(numbers);
-        System.out.println(maxSum);
-    }
-
-    private static int[] readInput(){
         int[] numbers = null;
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
             reader.readLine(); //skip the first line with number of inputs, don't need it since using streams
@@ -21,7 +15,9 @@ public class HW5_B_MaxSum {
         } catch (IOException e){
             e.printStackTrace();
         }
-        return numbers;
+
+        long maxSum = new SegmentCalculator().findLongestSegment(numbers);
+        System.out.println(maxSum);
     }
 }
 
