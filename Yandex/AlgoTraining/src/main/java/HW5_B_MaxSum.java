@@ -7,19 +7,44 @@ public class HW5_B_MaxSum {
     public static void main(String[] args) {
         int[] numbers = null;
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
-            reader.readLine(); //skip the first line with number of inputs, don't need it since using streams
+            reader.readLine();
+            String[] rawNumbers = reader.readLine().split(" ");
+            numbers = Arrays.stream(rawNumbers).mapToInt(Integer::valueOf).toArray();
 
-            numbers = Arrays.stream(reader.readLine().split(" "))
-                    .mapToInt(Integer::valueOf)
-                    .toArray();
         } catch (IOException e){
             e.printStackTrace();
         }
 
-        long maxSum = new SegmentCalculator().findLongestSegment(numbers);
+        long maxSum = findLongestSegment(numbers);
         System.out.println(maxSum);
     }
+
+    public static long findLongestSegment(int[] numbers){
+        long maxSum = numbers[0];
+        long partialSum = 0;
+        for (int i = 0; i < numbers.length; i++){
+            partialSum += numbers[i];
+
+            if (partialSum > maxSum){
+                maxSum = partialSum;
+            }
+
+            if (partialSum < 0){
+                partialSum = 0;
+            }
+
+        }
+
+        if (maxSum < 0) {
+            Arrays.sort(numbers);
+            maxSum = numbers[numbers.length-1];
+        }
+        return maxSum;
+    }
+
 }
+
+
 
 class SegmentCalculator{
     private long[] prefixes;
@@ -38,7 +63,7 @@ class SegmentCalculator{
         long maxSum = prefixes[1];
         for (int left = 1; left < prefixes.length; left++){
             for (int right = left; right < prefixes.length; right++){
-                long currentSum = calculateSegmentLength(left, right);
+                long currentSum = prefixes[right] - prefixes[left-1];
                 if (currentSum > maxSum){
                     maxSum = currentSum;
                 }

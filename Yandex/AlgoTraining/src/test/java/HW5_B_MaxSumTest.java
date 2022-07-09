@@ -13,7 +13,7 @@ class HW5_B_MaxSumTest {
         long expectedSum = 10;
 
         //actual
-        long calculatedSum = new SegmentCalculator().findLongestSegment(numbers);
+        long calculatedSum = HW5_B_MaxSum.findLongestSegment(numbers);
 
         assertEquals(expectedSum, calculatedSum);
     }
@@ -27,7 +27,7 @@ class HW5_B_MaxSumTest {
         long expectedSum = 9;
 
         //actual
-        long calculatedSum = new SegmentCalculator().findLongestSegment(numbers);
+        long calculatedSum = HW5_B_MaxSum.findLongestSegment(numbers);
 
         assertEquals(expectedSum, calculatedSum);
     }
@@ -41,7 +41,7 @@ class HW5_B_MaxSumTest {
         long expectedSum = 6;
 
         //actual
-        long calculatedSum = new SegmentCalculator().findLongestSegment(numbers);
+        long calculatedSum = HW5_B_MaxSum.findLongestSegment(numbers);
 
         assertEquals(expectedSum, calculatedSum);
     }
@@ -55,7 +55,7 @@ class HW5_B_MaxSumTest {
         long expectedSum = 0;
 
         //actual
-        long calculatedSum = new SegmentCalculator().findLongestSegment(numbers);
+        long calculatedSum = HW5_B_MaxSum.findLongestSegment(numbers);
 
         assertEquals(expectedSum, calculatedSum);
     }
@@ -69,7 +69,7 @@ class HW5_B_MaxSumTest {
         long expectedSum = 5;
 
         //actual
-        long calculatedSum = new SegmentCalculator().findLongestSegment(numbers);
+        long calculatedSum = HW5_B_MaxSum.findLongestSegment(numbers);
 
         assertEquals(expectedSum, calculatedSum);
     }
@@ -83,7 +83,7 @@ class HW5_B_MaxSumTest {
         long expectedSum = -1;
 
         //actual
-        long calculatedSum = new SegmentCalculator().findLongestSegment(numbers);
+        long calculatedSum = HW5_B_MaxSum.findLongestSegment(numbers);
 
         assertEquals(expectedSum, calculatedSum);
     }
@@ -97,10 +97,23 @@ class HW5_B_MaxSumTest {
         long expectedSum = 0;
 
         //actual
-        long calculatedSum = new SegmentCalculator().findLongestSegment(numbers);
+        long calculatedSum = HW5_B_MaxSum.findLongestSegment(numbers);
 
         assertEquals(expectedSum, calculatedSum);
     }
 
+    @Test
+    public void allZeroesWithOnePositive(){
+        //input
+        int[] numbers = new int[]{0, 6, 0};
+
+        //expected
+        long expectedSum = 6;
+
+        //actual
+        long calculatedSum = HW5_B_MaxSum.findLongestSegment(numbers);
+
+        assertEquals(expectedSum, calculatedSum);
+    }
 
 }
