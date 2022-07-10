@@ -42,4 +42,16 @@ class HW5_E_SumOfThreeTest {
         assertEquals(expectedResult, myResult);
     }
 
+    @Test
+    public void allNumbersTooBig(){
+        int targetNumber = 5;
+        List<String> inputArrays = Arrays.asList("1 7", "2 789 6", "3 100 100 100");
+
+        String expectedResult = "-1";
+
+        String myResult = HW5_E_SumOfThree.findPassingIndices(targetNumber, inputArrays);
+
+        assertEquals(expectedResult, myResult);
+    }
+
 }

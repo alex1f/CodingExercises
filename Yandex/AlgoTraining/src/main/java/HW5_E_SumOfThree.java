@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class HW5_E_SumOfThree {
     public static void main(String[] args) {
@@ -22,31 +23,38 @@ public class HW5_E_SumOfThree {
     }
 
     public static String findPassingIndices(int targetNumber, List<String> rawNumberArrays){
-        List<CustomNumber> numbersA = extractFilteredNumbersFromInput(targetNumber, rawNumberArrays.get(0));
-        List<CustomNumber> numbersB = extractFilteredNumbersFromInput(targetNumber, rawNumberArrays.get(1));
-        List<CustomNumber> numbersC = extractFilteredNumbersFromInput(targetNumber, rawNumberArrays.get(2));
+        CustomNumber[] numbersA = extractFilteredNumbersFromInput(targetNumber, rawNumberArrays.get(0));
+        CustomNumber[] numbersB = extractFilteredNumbersFromInput(targetNumber, rawNumberArrays.get(1));
+        CustomNumber[] numbersC = extractFilteredNumbersFromInput(targetNumber, rawNumberArrays.get(2));
+
+        //int[] numbersC = Arrays.stream(rawNumberArrays.get(2).split(" ")).mapToInt(Integer::valueOf).skip(1).toArray();
+
+        Map<Integer, Integer> numbersOfCArrayWithIndices = new HashMap<>();
+        for (CustomNumber x : numbersC){
+            if (!numbersOfCArrayWithIndices.containsKey(x.getValue())){
+                numbersOfCArrayWithIndices.put(x.getValue(), x.getIndex());
+            }
+        }
+
+        numbersC = null;
+
+        //Arrays.sort(numbersC ,Comparator.comparing(CustomNumber::getValue).reversed().thenComparing(CustomNumber::getIndex));
 
         String result = "-1";
 
-        if (numbersA.size() == 0 || numbersB.size() == 0 || numbersC.size() == 0){
-            return result;
-        }
 
         for (CustomNumber a : numbersA){
             for (CustomNumber b : numbersB){
-                for (CustomNumber c : numbersC){
-                    int sum = a.getValue() + b.getValue() + c.getValue();
-
-                    if (sum == targetNumber){
-                        return a.getIndex() + " " + b.getIndex() + " " + c.getIndex();
-                    }
+                int shortfall = targetNumber - a.getValue() - b.getValue();
+                if (numbersOfCArrayWithIndices.containsKey(shortfall)){
+                    return a.getIndex() + " " + b.getIndex() + " " + numbersOfCArrayWithIndices.get(shortfall);
                 }
             }
         }
         return result;
     }
 
-    private static List<CustomNumber> extractFilteredNumbersFromInput(int targetNumber, String input){
+    private static CustomNumber[] extractFilteredNumbersFromInput(int targetNumber, String input){
         List<CustomNumber> prospectiveNumbers = new ArrayList<>();
         //skipping first number since it contains the length of the provided array of numbers, not necessary for stream
         int[] rawNumbers = Arrays.stream(input.split(" ")).mapToInt(Integer::parseInt).skip(1).toArray();
@@ -55,7 +63,7 @@ public class HW5_E_SumOfThree {
                 prospectiveNumbers.add(new CustomNumber(i, rawNumbers[i]));
             }
         }
-        return prospectiveNumbers;
+        return prospectiveNumbers.toArray(new CustomNumber[0]);
     }
 
     private static int[] extractNumberArrayFromInputLine(String input){
@@ -129,5 +137,18 @@ class CustomNumber{
 
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomNumber that = (CustomNumber) o;
+        return value == that.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
