@@ -9,7 +9,7 @@ class HW5_E_SumOfThreeTest {
     @Test
     public void defaultData1(){
         int targetNumber = 3;
-        List<int[]> inputArrays = Arrays.asList(new int[]{1, 2}, new int[]{3, 1}, new int[]{3, 1});
+        List<String> inputArrays = Arrays.asList("2 1 2", "2 3 1", "2 3 1");
 
         String expectedResult = "0 1 1";
 
@@ -21,7 +21,7 @@ class HW5_E_SumOfThreeTest {
     @Test
     public void defaultData2(){
         int targetNumber = 10;
-        List<int[]> inputArrays = Arrays.asList(new int[]{5}, new int[]{4}, new int[]{3});
+        List<String> inputArrays = Arrays.asList("1 5", "1 4", "1 3");
 
         String expectedResult = "-1";
 
@@ -33,7 +33,7 @@ class HW5_E_SumOfThreeTest {
     @Test
     public void defaultData3(){
         int targetNumber = 5;
-        List<int[]> inputArrays = Arrays.asList(new int[]{1, 2, 3, 4}, new int[]{5, 2, 1}, new int[]{5, 3, 2, 2});
+        List<String> inputArrays = Arrays.asList("4 1 2 3 4", "3 5 2 1", "4 5 3 2 2");
 
         String expectedResult = "0 1 2";
 
